@@ -227,7 +227,7 @@ function usePowerG(){
             direction = -1
         }
         power.setPosition(player.x + 10 * direction,player.y)
-        power.setVelocityX(35*direction) 
+        power.setVelocityX(350*direction) 
       
     }
 }
@@ -245,7 +245,7 @@ function usePowerS(){
                 direction = -1
         }
         power.setPosition(player.x + 10 * direction,player.y)
-        power.setVelocityX(35*direction) 
+        power.setVelocityX(350*direction) 
       
     }
 }
