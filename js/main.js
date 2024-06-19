@@ -16,6 +16,7 @@ var HoldKey;
 var botlayer;
 var toplayer;
 
+var tutorialText;
 
 var crates;
 var powersG;
@@ -37,9 +38,8 @@ class LevelX extends Phaser.Scene{
                 { frameWidth: 24, frameHeight: 24 }
             );
         }
-        
     }
-
+    
     create(){
         if(!started){
             this.anims.create({
@@ -60,14 +60,12 @@ class LevelX extends Phaser.Scene{
                 frames: [{key:'mage', frame:5}],
                 frameRate: 10
             })
-        
-            
+                
             this.anims.create({
                 key: 'atk',
                 frames: this.anims.generateFrameNumbers('mageatk', {start: 3, end: 0}),
                 frameRate: 15
             })
-        
             
             this.anims.create({
                 key: 'atk-end',
@@ -282,7 +280,7 @@ function handleCrateMoviment() {
                     else if(cursor.right.isDown){
                         crate.setVelocityX(100)
                     }   
-                    if(cursor.up.isDown && player.body.blocked.down) {
+                    if(cursor.up.isDown && player.body.blocked.down && crate.scale <= 0.5) {
                         crate.setVelocityY(-100)      
                     }
                     } else {
@@ -328,6 +326,7 @@ class Level1 extends LevelX{
         }
         exit = this.physics.add.sprite(448,176,"exit");
         super.create();
+        tutorialText = this.add.text(72,25, 'Use the arrows to move and space to hold the box', { fontSize: '12px', fill: '#600'})
     }
     nextLevel(){
         game.scene.start("Level2")
@@ -367,9 +366,10 @@ class Level2 extends LevelX{
     
         exit = physics.add.sprite(448,160,"exit");
         super.create();
+        tutorialText = this.add.text(150,25, 'Use Q or W to use your powers!', { fontSize: '12px', fill: '#600'})
     }
     nextLevel(){
-        this.physics.pause();
+        physics.pause();
     }
 
 }
